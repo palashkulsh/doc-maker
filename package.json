@@ -1,6 +1,6 @@
 {
   "name": "doc-maker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "make comments for usage in apidoc",
   "main": "index.js",
   "scripts": {
