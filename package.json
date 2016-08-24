@@ -4,7 +4,8 @@
   "description": "make comments for usage in apidoc",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "patch-release": "npm version patch && npm publish && git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -24,5 +25,6 @@
   "dependencies": {
     "async": "^2.0.1",
     "request": "^2.74.0"
-  }
+  },
+  "devDependencies": {}
 }
