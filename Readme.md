@@ -62,7 +62,7 @@ So multiple failure case input must be given like ```[{a:1},{a:2},{a:3}]```
 Location where the final comment file will be finally written. Eg. ```/tmp/comment.js``` in our above example.
 
 ### Format of the Output
-Finally when the program is run then /tmp/comment.js file will look like shown below. 
+Finally when the program is run then /tmp/comment.js file will look like shown below. You can now skip the tedious task of writing the data , rather you can just concentrate on writing the information. like param description etc.
 
 ```
  @api {post} localhost:2191/some/api/check
