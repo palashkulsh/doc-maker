@@ -50,9 +50,10 @@ function getParamExampleData(input){
     return commentData;
 }
 
+//this function need refactoring
 function make_comments(input,cb){    
     var validInput,validSuccess,commentData,successCommentData,successExampleData,failureCommentData,failureExampleData;    
-    var finalCommentData=[];
+    var finalCommentData=['\**'];
     //making comments for general things like name,group,description etc
     if(input.success && input.success.length){
 	validInput=LibUtils.getArrayElement(input.success);
@@ -81,127 +82,24 @@ function make_comments(input,cb){
 	[getApi(input),getVersion(input),getApiName(input),getApiGroup(input),getApiDescription(input),commentData,getParamExampleData(input),successCommentData,successExampleData,failureCommentData,failureExampleData].forEach(function (eachComm){
 	    finalCommentData.push.apply(finalCommentData,eachComm);
 	});
-	Fs.writeFile('/tmp/comment.js',finalCommentData.join('\n'),cb);
+	finalCommentData.push('*/');
+	Fs.writeFile(input.outputFilePath,finalCommentData.join('\n'),cb);
     });
 }
 
+module.exports={
+    make_comments:make_comments
+};
+
 (function(){
     if(require.main==module){
-	var rule={
-
-	    "rule": {
-		"id": 3986,
-		"description": "TATA Power Distribution p. ltd.",
-		"type": "PAYMENT",
-		"value_cap": null
-	    },
-	    "actionConstraints": [
-		{
-		    "action": {
-			"id": 4030,
-			"description": "DebitCard",
-			"return_value": "10.0",
-			"return_value_type": "PERCENTAGE",
-			"return_value_cap": "11.4",
-			"return_value_min": "5.4"
-		    },
-		    "constraints": [
-			{
-			    "action_id": 4030,
-			    "rule_key": "PAYMENTMETHOD",
-			    "rule_value": "DC",
-			    "rule_operator": "=="
-			},
-			{
-			    "action_id": 4030,
-			    "rule_key": "PAYMENTVALUE",
-			    "rule_value": 5000,
-			    "rule_operator": ">"
-			}
-		    ]
-		},
-		{
-		    "action": {
-			"id": 4042,
-			"description": "IMPS",
-			"return_value": 0,
-			"return_value_type": "PERCENTAGE",
-			"return_value_cap": null,
-			"return_value_min": null
-		    },
-		    "constraints": [
-			{
-			    "action_id": 4042,
-			    "rule_key": "PAYMENTMETHOD",
-			    "rule_value": "IMPS",
-			    "rule_operator": "=="
-			},
-			{
-			    "action_id": 4042,
-			    "rule_key": "PAYMENTVALUE",
-			    "rule_value": 5000,
-			    "rule_operator": ">"
-			}
-		    ]
-		}
-	    ]
-	};
-	var updateOpts = {
-	    rule_id: 3999,
-	    actionConstraints: [{
-		"action": {
-		    "description": "Paytm gollet",
-		    "id": 2,
-		    "return_value": 15,
-		    "return_value_cap": null,
-		    "return_value_min": 1,
-		    "return_value_type": "percentage"
-		},
-		"constraints": [{
-		    "rule_key": "paymentmethod",
-		    "rule_operator": "==",
-		    "rule_value": "NB"
-		}]
-	    }]
-	};
-	var priceOpts={
-	    "data": {
-		"price": 50,
-		"id":24424,
-		"qty":3,
-		"shipping_charge": 400000
-	    },
-	    "existing_data": {
-		"price": 123,
-		"id":24424,
-		"qty":0,
-		"shipping_charge": 40
-	    },
-	    "type":4
-	};
-	var successpriceOpts={
-	    "data": {
-		"price": 50,
-		"id":24424,
-		"qty":3,
-		"shipping_charge": 40
-	    },
-	    "existing_data": {
-		"price": 50,
-		"id":24424,
-		"qty":3,
-		"shipping_charge": 40
-	    },
-	    "type":4
-	};
-
 	var input = {
-	    uri:'http://localhost:2191/v2/commissions/admin/product/check',
+	    uri:'http://localhost:2191/some/api/check',
 	    method:'post',
-	    success: [successpriceOpts],
-	    failure: [priceOpts]
+	    success: [{}],
+	    failure: [{}],
+	    outputFilePath:'/tmp/comment.js'
 	};
-	// console.log(processObject({commentType: '@apiSuccess'},rule,'input'))
 	make_comments(input,function (err,result){
 	    console.log(err,result);
 	})
