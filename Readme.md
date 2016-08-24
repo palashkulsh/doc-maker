@@ -9,7 +9,7 @@ To install type - ```npm install  doc-maker ```
 ### Usage
 Basic usage: To test the basic usage
 ``` js
-var DocMaker = require('../index');
+var DocMaker = require('doc-maker');
 (function(){
     if(require.main==module){
 	var input = {
