@@ -1,0 +1,28 @@
+{
+  "name": "doc-maker",
+  "version": "0.0.1",
+  "description": "make comments for usage in apidoc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/palashkulsh/doc-maker.git"
+  },
+  "keywords": [
+    "documentation",
+    "doc",
+    "wiki"
+  ],
+  "author": "palashkulsh",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/palashkulsh/doc-maker/issues"
+  },
+  "homepage": "https://github.com/palashkulsh/doc-maker#readme",
+  "dependencies": {
+    "async": "^2.0.1",
+    "request": "^2.74.0"
+  }
+}

@@ -1,0 +1,8 @@
+
+function getArrayElement(arr){
+    return arr[0];
+}
+
+module.exports={
+    getArrayElement:getArrayElement
+};
